@@ -1,36 +1,147 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MovieFlix - Movie Streaming Web Application
+
+A modern, responsive movie streaming web application built with Next.js, TypeScript, and the TMDB API.
+
+![MovieFlix Banner](https://image.tmdb.org/t/p/original/kwUQFeFoGYgcClloMfXZ6WVrJJX.jpg)
+
+## Live Demo
+
+[MovieFlix - Visit Live Site](https://movieeflix.vercel.app)
+
+## Features
+
+- **Browse Movies:** Explore popular, top-rated, now playing, and upcoming movies
+- **Genre Filtering:** Browse movies by specific genres
+- **Search Functionality:** Find movies using the search bar
+- **Movie Details:** View comprehensive information about movies
+- **Watch Movies:** Stream movie trailers directly in the application
+- **Download Options:** Simulated download options for different quality versions
+- **Responsive Design:** Fully responsive layout that works on mobile, tablet, and desktop
+
+## Technology Stack
+
+- **Frontend Framework:** Next.js 14 with App Router
+- **Programming Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **API:** The Movie Database (TMDB) API
+- **Deployment:** Vercel
+
+## Screenshots
+
+<details>
+<summary>View Screenshots</summary>
+
+### Home Page
+
+![Home Page](https://image.tmdb.org/t/p/w500/ugS5FVfCI3RV0ZwZtBV3HAV75OX.jpg)
+
+### Movie Details
+
+![Movie Details](https://image.tmdb.org/t/p/w500/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg)
+
+### Browse Page
+
+![Browse Page](https://image.tmdb.org/t/p/w500/628Dep6AxEtDxjZoGP78TsOxYbK.jpg)
+
+</details>
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.x or higher
+- npm or yarn
+- TMDB API key (get it from [TMDB website](https://www.themoviedb.org/settings/api))
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/khadka27/movieflix.git
+cd movieflix
+```
+
+2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Create a `.env.local` file in the root directory and add your TMDB API key
+
+```
+TMDB_API_KEY=your_tmdb_api_key_here
+TMDB_API_BASE_URL=https://api.themoviedb.org/3
+TMDB_IMAGE_BASE_URL=https://image.tmdb.org/t/p
+```
+
+4. Run the development server
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+# or
+yarn build
+yarn start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+movieflix/
+├── app/                      # Next.js app directory
+│   ├── api/                  # API routes
+│   ├── browse/               # Browse page
+│   ├── download/             # Download page
+│   ├── movie/                # Movie details page
+│   ├── search/               # Search page
+│   ├── watch/                # Watch page
+│   ├── globals.css           # Global styles
+│   ├── layout.tsx            # Root layout
+│   ├── page.tsx              # Home page
+│   └── not-found.tsx         # 404 page
+├── components/               # React components
+│   ├── common/               # Common components
+│   ├── home/                 # Home page components
+│   └── movies/               # Movie-related components
+├── lib/                      # Utility functions and API
+│   ├── tmdb.ts               # TMDB API client
+│   └── utils.ts              # Utility functions
+└── types/                    # TypeScript type definitions
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Future Enhancements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- User authentication and profiles
+- Watchlist and favorites functionality
+- Advanced filtering and sorting
+- Actual video playback integration
+- Server-side caching for improved performance
 
-## Deploy on Vercel
+## Disclaimer
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is for educational purposes only. It doesn't actually stream or provide downloads for copyrighted content. All movie data is fetched from TMDB API, and media playback is limited to trailers provided by TMDB.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contact
+
+Abishek Khadka  
+Email: abishekkhadka90@gmail.com  
+Website: [abhishekkhadka.vercel.app](https://abhishekkhadka.vercel.app)  
+GitHub: [khadka27](https://github.com/khadka27)
