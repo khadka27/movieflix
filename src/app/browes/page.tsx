@@ -11,12 +11,10 @@ import Pagination from "@/components/common/Pagination";
 import Loader from "@/components/common/Loader";
 import { Movie } from "@/types";
 
-interface BrowsePageProps {
-  searchParams: {
-    category?: string;
-    genre?: string;
-    page?: string;
-  };
+interface SearchParams {
+  category?: string;
+  genre?: string;
+  page?: string;
 }
 
 export const metadata: Metadata = {
@@ -24,7 +22,11 @@ export const metadata: Metadata = {
   description: "Browse our collection of movies by category or genre",
 };
 
-export default async function BrowsePage({ searchParams }: BrowsePageProps) {
+export default async function BrowsePage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const category = searchParams.category || "popular";
   const genreId = searchParams.genre;
   const page = parseInt(searchParams.page || "1");
@@ -113,7 +115,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
               href="/browse?category=popular"
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 category === "popular" && !genreId
-                  ? "bg-secondary text-white"
+                  ? "bg-teal-500 text-white"
                   : "bg-gray-200 text-gray-800 hover:bg-gray-300"
               }`}
             >
@@ -123,7 +125,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
               href="/browse?category=top_rated"
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 category === "top_rated" && !genreId
-                  ? "bg-secondary text-white"
+                  ? "bg-teal-500 text-white"
                   : "bg-gray-200 text-gray-800 hover:bg-gray-300"
               }`}
             >
@@ -133,7 +135,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
               href="/browse?category=now_playing"
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 category === "now_playing" && !genreId
-                  ? "bg-secondary text-white"
+                  ? "bg-teal-500 text-white"
                   : "bg-gray-200 text-gray-800 hover:bg-gray-300"
               }`}
             >
@@ -143,7 +145,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
               href="/browse?category=upcoming"
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 category === "upcoming" && !genreId
-                  ? "bg-secondary text-white"
+                  ? "bg-teal-500 text-white"
                   : "bg-gray-200 text-gray-800 hover:bg-gray-300"
               }`}
             >
@@ -162,7 +164,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
                   href={`/browse?genre=${id}`}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors text-center ${
                     genreId === id
-                      ? "bg-primary text-white"
+                      ? "bg-blue-900 text-white"
                       : "bg-gray-200 text-gray-800 hover:bg-gray-300"
                   }`}
                 >
