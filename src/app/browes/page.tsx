@@ -25,11 +25,13 @@ export const metadata: Metadata = {
 export default async function BrowsePage({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 }) {
-  const category = searchParams.category || "popular";
-  const genreId = searchParams.genre;
-  const page = parseInt(searchParams.page || "1");
+  // Await the promise to resolve the search parameters
+  const resolvedSearchParams = await searchParams;
+  const category = resolvedSearchParams.category || "popular";
+  const genreId = resolvedSearchParams.genre;
+  const page = parseInt(resolvedSearchParams.page || "1");
 
   let movies: Movie[] = [];
   let totalPages = 0;
@@ -62,11 +64,8 @@ export default async function BrowsePage({
     movies = data.results;
     totalPages = data.total_pages;
 
-    // In a real app, we would filter by genre here or make a specific API call
-    // For this demo, we'll just simulate filtering if a genre is provided
+    // Simulate filtering by genre by updating the title if a genre is provided
     if (genreId) {
-      // We would make a proper genre-based API call here
-      // For the demo, we'll just update the title
       title = `${title} - Genre: ${genreId}`;
     }
   } catch (error) {

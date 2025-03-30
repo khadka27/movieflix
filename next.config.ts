@@ -10,10 +10,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    serverComponentsExternalPackages: ['axios'],
-  },
+  serverExternalPackages: ['axios'],
 };
 
 export default nextConfig;
-
