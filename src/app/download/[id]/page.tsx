@@ -3,8 +3,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getMovieDetails, getImageUrl } from "@/lib/tmdb";
-import { formatRuntime } from "@/lib/tmdb";
+import { getMovieDetails, getImageUrl, formatRuntime } from "@/lib/tmdb";
 import { getYearFromDate } from "@/lib/utils";
 import { FaArrowLeft, FaDownload, FaFilm, FaPlay } from "react-icons/fa";
 
@@ -19,7 +18,6 @@ export async function generateMetadata({
 }: DownloadPageProps): Promise<Metadata> {
   try {
     const movie = await getMovieDetails(parseInt(params.id));
-
     return {
       title: `Download ${movie.title} | MovieFlix`,
       description: `Download ${movie.title} in HD quality from MovieFlix`,
@@ -36,7 +34,6 @@ export default async function DownloadPage({ params }: DownloadPageProps) {
   try {
     const movieId = parseInt(params.id);
     const movie = await getMovieDetails(movieId);
-
     const posterUrl = getImageUrl(movie.poster_path, "w500");
     const backdropUrl = getImageUrl(movie.backdrop_path, "original");
     const year = getYearFromDate(movie.release_date);
