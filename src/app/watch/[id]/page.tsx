@@ -5,16 +5,17 @@ import { getMovieDetails } from "@/lib/tmdb";
 import MoviePlayer from "@/components/movies/MoviePlayer";
 
 interface WatchPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({
   params,
 }: WatchPageProps): Promise<Metadata> {
+  const resolvedParams = await params;
   try {
-    const movie = await getMovieDetails(parseInt(params.id));
+    const movie = await getMovieDetails(parseInt(resolvedParams.id));
 
     return {
       title: `Watch ${movie.title} | MovieFlix`,
@@ -29,8 +30,9 @@ export async function generateMetadata({
 }
 
 export default async function WatchPage({ params }: WatchPageProps) {
+  const resolvedParams = await params;
   try {
-    const movieId = parseInt(params.id);
+    const movieId = parseInt(resolvedParams.id);
     const movie = await getMovieDetails(movieId);
 
     // Look for a trailer or teaser video
