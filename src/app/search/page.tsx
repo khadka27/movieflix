@@ -7,10 +7,10 @@ import Loader from "@/components/common/Loader";
 import { Movie } from "@/types";
 
 interface SearchPageProps {
-  searchParams: {
+  searchParams: Promise<{
     q: string;
     page?: string;
-  };
+  }>;
 }
 
 export const metadata: Metadata = {
@@ -19,8 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const query = searchParams.q || "";
-  const page = parseInt(searchParams.page || "1");
+  const resolvedSearchParams = await searchParams;
+  const query = resolvedSearchParams.q || "";
+  const page = parseInt(resolvedSearchParams.page || "1");
 
   let movies: Movie[] = [];
   let totalPages = 0;
@@ -45,14 +46,12 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           <h1 className="text-2xl font-bold mb-2">
             {query ? `Search Results for "${query}"` : "Search Movies"}
           </h1>
-
           {query && (
             <p className="text-gray-500">
               Found {totalResults} movies matching your search
             </p>
           )}
         </div>
-
         <Suspense fallback={<Loader />}>
           {query ? (
             <>
@@ -60,7 +59,6 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 movies={movies}
                 emptyMessage={`No movies found matching "${query}"`}
               />
-
               {totalPages > 1 && (
                 <Pagination currentPage={page} totalPages={totalPages} />
               )}
