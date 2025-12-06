@@ -1,55 +1,41 @@
 @import "tailwindcss";
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 240, 240, 240;
+@theme {
+  --color-background: #141414;
+  --color-surface: #181818;
+  --color-primary: #e50914;
+  --color-secondary: #ffffff;
+  --color-charcoal: #0f0f0f;
+  --color-grey-text: #b3b3b3;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 13, 37, 63;
-    --background-end-rgb: 3, 37, 65;
-  }
+:root {
+  --background: #141414;
+  --foreground: #ffffff;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      rgb(var(--background-start-rgb)),
-      rgb(var(--background-end-rgb))
-    )
-    fixed;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
 }
 
-@layer components {
-  .container-custom {
-    @apply container mx-auto px-4;
-  }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
 
-  .btn {
-    @apply py-2 px-4 rounded-md font-medium transition-colors;
-  }
+::-webkit-scrollbar-track {
+  background: #141414;
+}
 
-  .btn-primary {
-    @apply bg-blue-600 text-white hover:bg-blue-700;
-  }
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
 
-  .btn-secondary {
-    @apply bg-teal-500 text-white hover:bg-teal-600;
-  }
-
-  .btn-outline {
-    @apply border border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800;
-  }
-
-  .movie-card {
-    @apply rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300;
-  }
-
-  .gradient-overlay {
-    @apply absolute inset-0 bg-gradient-to-t from-black/80 to-transparent;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

@@ -1,10 +1,12 @@
 export interface Movie {
     id: number;
     title: string;
+    name?: string; // For TV Shows
     overview: string;
     poster_path: string;
     backdrop_path: string;
     release_date: string;
+    first_air_date?: string; // For TV Shows
     vote_average: number;
     vote_count: number;
     popularity: number;
@@ -13,6 +15,7 @@ export interface Movie {
     original_language: string;
     original_title: string;
     video: boolean;
+    media_type?: "movie" | "tv" | "person";
   }
   
   export interface MovieDetails extends Movie {

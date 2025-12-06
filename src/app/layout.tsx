@@ -1,23 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/common/Header";
-import Footer from "@/components/common/Footer";
+import Navbar from "@/components/Navbar";
+import NetflixLoader from "@/components/ui/NetflixLoader";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "MovieFlix - Watch and Download Movies",
-  description:
-    "Browse, watch, and download your favorite movies easily with MovieFlix",
+  title: "MovieFlix - Infinite Entertainment",
+  description: "Watch TV shows and movies anywhere.",
 };
 
 export default function RootLayout({
@@ -26,13 +20,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} font-sans bg-background text-white antialiased`}
       >
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <NetflixLoader />
+        <Navbar />
+        {children}
       </body>
     </html>
   );

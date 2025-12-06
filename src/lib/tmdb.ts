@@ -63,6 +63,17 @@ export const getMovieDetails = async (id: number): Promise<MovieDetails> => {
   return response.data;
 };
 
+export const getTvDetails = async (id: number): Promise<MovieDetails> => {
+  const response = await api.get<MovieDetails>(`/tv/${id}`, {
+    params: {
+      append_to_response: "videos,credits,similar",
+    },
+  });
+  // Map TV show specific fields if necessary to match MovieDetails or extend type
+  // For now, TMDB returns similar structure for common fields
+  return { ...response.data, title: response.data.name || response.data.title || 'Untitled' }; 
+};
+
 export const searchMovies = async (
   query: string,
   page: number = 1
@@ -71,6 +82,20 @@ export const searchMovies = async (
     params: {
       query,
       page,
+    },
+  });
+  return response.data;
+};
+
+export const searchMulti = async (
+  query: string,
+  page: number = 1
+): Promise<MovieResponse> => {
+  const response = await api.get<MovieResponse>("/search/multi", {
+    params: {
+      query,
+      page,
+      include_adult: false,
     },
   });
   return response.data;
